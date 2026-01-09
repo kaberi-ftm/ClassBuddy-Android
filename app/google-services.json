@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "277969027958",
+    "project_id": "classbuddy-d0b4f",
+    "storage_bucket": "classbuddy-d0b4f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277969027958:android:c67032ddbbb9c8cb2bf057",
+        "android_client_info": {
+          "package_name": "com.classbuddy.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQJTfyRCuOyZC2yIpJHV5quIeS_R5BC00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
