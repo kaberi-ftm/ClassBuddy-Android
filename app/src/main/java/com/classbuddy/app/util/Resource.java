@@ -3,7 +3,7 @@ package com.classbuddy.app.util;
 
 
 import androidx.annotation.NonNull;
-import androidx. annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public class Resource<T> {
 

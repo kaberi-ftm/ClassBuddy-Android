@@ -1,6 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/student_nav_graph"
+    app:startDestination="@id/studentDashboardFragment">
 
-</LinearLayout>
+    <!-- Dashboard -->
+    <fragment
+        android:id="@+id/studentDashboardFragment"
+        android:name="com.classbuddy.app.ui.student.dashboard.StudentDashboardFragment"
+        android:label="@string/nav_dashboard"
+        tools:layout="@layout/fragment_student_dashboard">
+
+        <action
+            android:id="@+id/action_dashboard_to_classroomDetail"
+            app:destination="@id/classroomDetailFragment" />
+
+        <action
+            android:id="@+id/action_dashboard_to_joinClassroom"
+            app:destination="@id/joinClassroomFragment" />
+
+        <action
+            android:id="@+id/action_dashboard_to_routine"
+            app:destination="@id/studentRoutineFragment" />
+
+        <action
+            android:id="@+id/action_dashboard_to_exams"
+            app:destination="@id/studentExamFragment" />
+
+        <action
+            android:id="@+id/action_dashboard_to_notices"
+            app:destination="@id/studentNoticeFragment" />
+    </fragment>
+
+    <!-- My Classrooms -->
+    <fragment
+        android:id="@+id/myClassroomsFragment"
+        android:name="com.classbuddy.app.ui.student.classroom.MyClassroomsFragment"
+        android:label="@string/my_classrooms"
+        tools:layout="@layout/fragment_my_classrooms">
+
+        <action
+            android:id="@+id/action_myClassrooms_to_joinClassroom"
+            app:destination="@id/joinClassroomFragment" />
+
+        <action
+            android:id="@+id/action_myClassrooms_to_classroomDetail"
+            app:destination="@id/classroomDetailFragment" />
+    </fragment>
+
+    <!-- Join Classroom -->
+    <fragment
+        android:id="@+id/joinClassroomFragment"
+        android:name="com.classbuddy.app.ui.student.classroom.JoinClassroomFragment"
+        android:label="@string/join_classroom"
+        tools:layout="@layout/fragment_join_classroom" />
+
+    <!-- Classroom Detail -->
+    <fragment
+        android:id="@+id/classroomDetailFragment"
+        android:name="com.classbuddy.app.ui.student.classroom.ClassroomDetailFragment"
+        android:label="Classroom"
+        tools:layout="@layout/fragment_classroom_detail">
+
+        <argument
+            android:name="classroomId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_classroomDetail_to_routine"
+            app:destination="@id/studentRoutineFragment" />
+
+        <action
+            android:id="@+id/action_classroomDetail_to_exams"
+            app:destination="@id/studentExamFragment" />
+
+        <action
+            android:id="@+id/action_classroomDetail_to_notices"
+            app:destination="@id/studentNoticeFragment" />
+    </fragment>
+
+    <!-- Calendar -->
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.classbuddy.app.ui.student.calendar.CalendarFragment"
+        android:label="@string/nav_calendar"
+        tools:layout="@layout/fragment_calendar" />
+
+    <!-- Notifications -->
+    <fragment
+        android:id="@+id/notificationCenterFragment"
+        android:name="com.classbuddy.app.ui.student.notification.NotificationCenterFragment"
+        android:label="@string/notification_center"
+        tools:layout="@layout/fragment_notification_center" />
+
+    <!-- Profile -->
+    <fragment
+        android:id="@+id/studentProfileFragment"
+        android:name="com.classbuddy.app.ui.student.profile.StudentProfileFragment"
+        android:label="@string/nav_profile"
+        tools:layout="@layout/fragment_student_profile" />
+
+    <!-- Routine -->
+    <fragment
+        android:id="@+id/studentRoutineFragment"
+        android:name="com.classbuddy.app.ui.student.routine.StudentRoutineFragment"
+        android:label="@string/class_routine"
+        tools:layout="@layout/fragment_student_routine">
+
+        <argument
+            android:name="classroomId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <!-- Exams -->
+    <fragment
+        android:id="@+id/studentExamFragment"
+        android:name="com.classbuddy.app.ui.student.exam.StudentExamFragment"
+        android:label="@string/exams"
+        tools:layout="@layout/fragment_student_exam">
+
+        <argument
+            android:name="classroomId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <!-- Notices -->
+    <fragment
+        android:id="@+id/studentNoticeFragment"
+        android:name="com.classbuddy.app.ui.student.notice.StudentNoticeFragment"
+        android:label="@string/notices"
+        tools:layout="@layout/fragment_student_notice">
+
+        <argument
+            android:name="classroomId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+</navigation>

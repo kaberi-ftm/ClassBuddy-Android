@@ -1,13 +1,13 @@
 package com.classbuddy.app;
 
 import android.app.Application;
-import android. app.NotificationChannel;
-import android. app.NotificationManager;
-import android. os.Build;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google. firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 public class ClassBuddyApplication extends Application {
 

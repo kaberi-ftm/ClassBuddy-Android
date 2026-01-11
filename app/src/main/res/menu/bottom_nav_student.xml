@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-</LinearLayout>
+    <item
+        android:id="@+id/studentDashboardFragment"
+        android:icon="@drawable/ic_dashboard"
+        android:title="@string/nav_dashboard" />
+
+    <item
+        android:id="@+id/myClassroomsFragment"
+        android:icon="@drawable/ic_classroom"
+        android:title="@string/nav_classrooms" />
+
+    <item
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/nav_calendar" />
+
+    <item
+        android:id="@+id/notificationCenterFragment"
+        android:icon="@drawable/ic_notification"
+        android:title="@string/nav_notifications" />
+
+    <item
+        android:id="@+id/studentProfileFragment"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/nav_profile" />
+
+</menu>

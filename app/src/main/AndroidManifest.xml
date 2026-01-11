@@ -8,15 +8,18 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Storage permissions for image upload -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:name=".ClassBuddyApplication"
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -36,30 +39,35 @@
             </intent-filter>
         </activity>
 
-        <!-- Auth -->
+        <!-- Login Activity -->
         <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="false"
+            android:theme="@style/Theme.ClassBuddy.Auth"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- Register Activity -->
         <activity
             android:name=".ui.auth.RegisterActivity"
             android:exported="false"
+            android:theme="@style/Theme.ClassBuddy.Auth"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Student -->
+        <!-- Student Main Activity -->
         <activity
             android:name=".ui.student.StudentMainActivity"
             android:exported="false"
+            android:theme="@style/Theme.ClassBuddy"
             android:windowSoftInputMode="adjustPan" />
 
-        <!-- Admin -->
+        <!-- Admin Main Activity -->
         <activity
             android:name=".ui.admin.AdminMainActivity"
             android:exported="false"
+            android:theme="@style/Theme.ClassBuddy"
             android:windowSoftInputMode="adjustPan" />
 
-        <!-- Firebase Messaging Service -->
+        <!-- Firebase Cloud Messaging Service -->
         <service
             android:name=".data.remote.FCMService"
             android:exported="false">
@@ -68,15 +76,17 @@
             </intent-filter>
         </service>
 
-        <!-- Firebase Notification Config -->
+        <!-- Default notification channel metadata -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="classbuddy_channel" />
 
+        <!-- Default notification icon -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
 
+        <!-- Default notification color -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/primary" />

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "277969027958",
-    "project_id": "classbuddy-d0b4f",
-    "storage_bucket": "classbuddy-d0b4f.firebasestorage.app"
+    "project_number": "709088424734",
+    "project_id": "classbuddy-144e0",
+    "storage_bucket": "classbuddy-144e0.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:277969027958:android:c67032ddbbb9c8cb2bf057",
+        "mobilesdk_app_id": "1:709088424734:android:7c3533cf838207d9c8cf0f",
         "android_client_info": {
           "package_name": "com.classbuddy.app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBQJTfyRCuOyZC2yIpJHV5quIeS_R5BC00"
+          "current_key": "AIzaSyCtuTDNFik0O6y58EIT4CrfNsqHOb3DnVk"
         }
       ],
       "services": {

@@ -2,26 +2,27 @@ package com.classbuddy.app.data.remote;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content. Context;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.core. app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 
 import com.classbuddy.app.ClassBuddyApplication;
-import com. classbuddy.R;
-import com. classbuddy.app.ui.splash.SplashActivity;
-import com. classbuddy.app.util.Constants;
+import com.classbuddy.app.R;
+import com.classbuddy.app.ui.splash.SplashActivity;
+import com.classbuddy.app.util.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com. google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase. messaging.FirebaseMessagingService;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.HashMap;
-import java. util.Map;
+import java.util.Map;
 
 public class FCMService extends FirebaseMessagingService {
 

@@ -1,13 +1,13 @@
 package com.classbuddy.app.data.model;
 
 
-import com.google.firebase. Timestamp;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentId;
-import com.google.firebase. firestore.ServerTimestamp;
+import com.google.firebase.firestore.ServerTimestamp;
 
-import java.io. Serializable;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java. util.List;
+import java.util.List;
 
 public class Classroom implements Serializable {
 

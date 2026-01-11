@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingHorizontal="4dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="8dp"
+    android:gravity="center_vertical">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="24dp"
+        android:background="@color/primary" />
+
+    <TextView
+        android:id="@+id/tvClassroomName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_md"
+        android:textStyle="bold"
+        tools:text="Data Structures Class" />
+
+    <TextView
+        android:id="@+id/tvClassCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/text_hint"
+        android:textSize="@dimen/text_size_sm"
+        tools:text="3 classes" />
+
+</LinearLayout>

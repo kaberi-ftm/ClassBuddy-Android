@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.classbuddy"
+    namespace = "com.classbuddy.app"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.classbuddy"
+        applicationId = "com.classbuddy.app"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -39,8 +39,7 @@ android {
 }
 
 dependencies {
-
-    // AndroidX Core
+    // AndroidX Core Libraries
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -49,28 +48,30 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.fragment:fragment:1.6.2")
 
-    // Material Design
+    // Material Design 3
     implementation("com.google.android.material:material:1.11.0")
 
     // Navigation Component
     implementation("androidx.navigation:navigation-fragment:2.7.6")
     implementation("androidx.navigation:navigation-ui:2.7.6")
 
-    // Lifecycle
+    // Lifecycle Components
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata:2.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime:2.6.2")
     implementation("androidx.lifecycle:lifecycle-common-java8:2.6.2")
 
-    // Firebase (BoM)
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
-    implementation("com.google.firebase:firebase-auth")
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
+    implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-firestore")
-    implementation("com.google.firebase:firebase-messaging")
-    implementation("com.google.firebase:firebase-storage")
+    implementation(libs.firebase.messaging)
 
     // WorkManager
     implementation("androidx.work:work-runtime:2.9.0")
+
+    // Guava (ListenableFuture required by WorkManager)
+    implementation("com.google.guava:guava:32.1.3-android")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")

@@ -1,6 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_nav_graph"
+    app:startDestination="@id/adminDashboardFragment">
 
-</LinearLayout>
+    <!-- Dashboard -->
+    <fragment
+        android:id="@+id/adminDashboardFragment"
+        android:name="com.classbuddy.app.ui.admin.dashboard.AdminDashboardFragment"
+        android:label="@string/nav_dashboard"
+        tools:layout="@layout/fragment_admin_dashboard">
+
+        <action
+            android:id="@+id/action_dashboard_to_createClassroom"
+            app:destination="@id/createClassroomFragment" />
+    </fragment>
+
+    <!-- Classrooms -->
+    <fragment
+        android:id="@+id/adminClassroomFragment"
+        android:name="com.classbuddy.app.ui.admin.classroom.AdminClassroomFragment"
+        android:label="@string/nav_classrooms"
+        tools:layout="@layout/fragment_admin_classroom">
+
+        <action
+            android:id="@+id/action_classrooms_to_createClassroom"
+            app:destination="@id/createClassroomFragment" />
+
+        <action
+            android:id="@+id/action_classrooms_to_classroomStudents"
+            app:destination="@id/classroomStudentsFragment" />
+
+        <action
+            android:id="@+id/action_classrooms_to_routine"
+            app:destination="@id/adminRoutineFragment" />
+    </fragment>
+
+    <!-- Create Classroom -->
+    <fragment
+        android:id="@+id/createClassroomFragment"
+        android:name="com.classbuddy.app.ui.admin.classroom.CreateClassroomFragment"
+        android:label="@string/create_classroom"
+        tools:layout="@layout/fragment_create_classroom" />
+
+    <!-- Classroom Students -->
+    <fragment
+        android:id="@+id/classroomStudentsFragment"
+        android:name="com.classbuddy.app.ui.admin.student.StudentManagementFragment"
+        android:label="Students"
+        tools:layout="@layout/fragment_student_management">
+
+        <argument
+            android:name="classroomId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <!-- Routine Management -->
+    <fragment
+        android:id="@+id/adminRoutineFragment"
+        android:name="com.classbuddy.app.ui.admin.routine.AdminRoutineFragment"
+        android:label="@string/class_routine"
+        tools:layout="@layout/fragment_admin_routine">
+
+        <argument
+            android:name="classroomId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_routine_to_addRoutine"
+            app:destination="@id/addRoutineFragment" />
+    </fragment>
+
+    <!-- Add/Edit Routine -->
+    <fragment
+        android:id="@+id/addRoutineFragment"
+        android:name="com.classbuddy.app.ui.admin.routine.AddRoutineFragment"
+        android:label="@string/add_routine"
+        tools:layout="@layout/fragment_add_routine">
+
+        <argument
+            android:name="classroomId"
+            app:argType="string" />
+
+        <argument
+            android:name="routineId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <!-- Exams -->
+    <fragment
+        android:id="@+id/adminExamFragment"
+        android:name="com.classbuddy.app.ui.admin.exam.AdminExamFragment"
+        android:label="@string/nav_exams"
+        tools:layout="@layout/fragment_admin_exam">
+
+        <action
+            android:id="@+id/action_exams_to_createExam"
+            app:destination="@id/createExamFragment" />
+    </fragment>
+
+    <!-- Create/Edit Exam -->
+    <fragment
+        android:id="@+id/createExamFragment"
+        android:name="com.classbuddy.app.ui.admin.exam.CreateExamFragment"
+        android:label="@string/add_exam"
+        tools:layout="@layout/fragment_create_exam">
+
+        <argument
+            android:name="examId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <!-- Notices -->
+    <fragment
+        android:id="@+id/adminNoticeFragment"
+        android:name="com.classbuddy.app.ui.admin.notice.AdminNoticeFragment"
+        android:label="@string/nav_notices"
+        tools:layout="@layout/fragment_admin_notice">
+
+        <action
+            android:id="@+id/action_notices_to_createNotice"
+            app:destination="@id/createNoticeFragment" />
+    </fragment>
+
+    <!-- Create/Edit Notice -->
+    <fragment
+        android:id="@+id/createNoticeFragment"
+        android:name="com.classbuddy.app.ui.admin.notice.CreateNoticeFragment"
+        android:label="@string/create_notice"
+        tools:layout="@layout/fragment_create_notice">
+
+        <argument
+            android:name="noticeId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <!-- Student Management -->
+    <fragment
+        android:id="@+id/studentManagementFragment"
+        android:name="com.classbuddy.app.ui.admin.student.StudentManagementFragment"
+        android:label="@string/student_management"
+        tools:layout="@layout/fragment_student_management" />
+
+</navigation>

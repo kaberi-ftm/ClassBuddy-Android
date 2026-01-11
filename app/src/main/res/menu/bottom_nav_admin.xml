@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-</LinearLayout>
+    <item
+        android:id="@+id/adminDashboardFragment"
+        android:icon="@drawable/ic_dashboard"
+        android:title="@string/nav_dashboard" />
+
+    <item
+        android:id="@+id/adminClassroomFragment"
+        android:icon="@drawable/ic_classroom"
+        android:title="@string/nav_classrooms" />
+
+    <item
+        android:id="@+id/adminExamFragment"
+        android:icon="@drawable/ic_exam"
+        android:title="@string/nav_exams" />
+
+    <item
+        android:id="@+id/adminNoticeFragment"
+        android:icon="@drawable/ic_notice"
+        android:title="@string/nav_notices" />
+
+    <item
+        android:id="@+id/studentManagementFragment"
+        android:icon="@drawable/ic_students"
+        android:title="@string/nav_students" />
+
+</menu>
