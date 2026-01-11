@@ -14,10 +14,12 @@ import com.classbuddy.app.data.repository.UserRepository;
 import com.classbuddy.app.util.DateTimeUtils;
 import com.classbuddy.app.util.Resource;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class CalendarViewModel extends ViewModel {
 
@@ -136,19 +138,50 @@ public class CalendarViewModel extends ViewModel {
         calendar.setTime(date);
         int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
         String dayName = DateTimeUtils.getDayOfWeekFromDate(date);
+        
+        // Format the selected date for comparison
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String selectedDateStr = sdf.format(date);
 
         // Add routines for this day
         for (Routine routine : allRoutines) {
-            if (routine.getDayIndex() == dayIndex) {
+            boolean shouldAdd = false;
+            boolean isCancelledForThisDate = false;
+            
+            // Check if this is a specific date class
+            if (routine.getSpecificDate() != null && !routine.getSpecificDate().isEmpty()) {
+                // One-time class - check if it matches the selected date
+                if (routine.getSpecificDate().equals(selectedDateStr)) {
+                    shouldAdd = true;
+                    isCancelledForThisDate = routine.isCancelled();
+                }
+            } else {
+                // Recurring weekly class - check day of week
+                if (routine.getDayIndex() == dayIndex) {
+                    shouldAdd = true;
+                    // Check if cancelled for this specific date
+                    if (routine.isCancelled() && routine.getCancelledDate() != null) {
+                        isCancelledForThisDate = routine.getCancelledDate().equals(selectedDateStr);
+                    }
+                }
+            }
+            
+            if (shouldAdd) {
+                String title = routine.getSubject();
+                if (isCancelledForThisDate) {
+                    title = routine.getSubject() + " (CANCELLED)";
+                }
+                
                 CalendarEvent event = new CalendarEvent(
                         routine.getId(),
-                        routine.getSubject(),
+                        title,
                         routine.getClassroomName(),
                         DateTimeUtils.formatTime(routine.getStartTime()) + " - " +
                                 DateTimeUtils.formatTime(routine.getEndTime()),
                         routine.getType().equalsIgnoreCase("lab") ? "Lab" : "Class",
                         "Room: " + routine.getRoom() + " | " + routine.getFaculty(),
-                        date
+                        date,
+                        isCancelledForThisDate
                 );
                 events.add(event);
             }
@@ -158,14 +191,21 @@ public class CalendarViewModel extends ViewModel {
         for (Exam exam : allExams) {
             if (exam.getExamDate() != null &&
                     DateTimeUtils.isSameDay(exam.getExamDate().toDate(), date)) {
+                
+                String title = exam.getExamTypeDisplay() + ": " + exam.getCourseName();
+                if (exam.isCancelled()) {
+                    title = title + " (CANCELLED)";
+                }
+                
                 CalendarEvent event = new CalendarEvent(
                         exam.getId(),
-                        exam.getExamTypeDisplay() + ": " + exam.getCourseName(),
+                        title,
                         exam.getClassroomName(),
                         DateTimeUtils.formatTime(exam.getStartTime()),
                         "Exam",
                         "Course: " + exam.getCourseNo() + " | Room: " + exam.getRoom(),
-                        date
+                        date,
+                        exam.isCancelled()
                 );
                 events.add(event);
             }

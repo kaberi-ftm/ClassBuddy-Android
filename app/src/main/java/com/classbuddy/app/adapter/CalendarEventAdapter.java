@@ -64,28 +64,34 @@ public class CalendarEventAdapter extends ListAdapter<CalendarEvent, CalendarEve
             binding.tvTitle.setText(event.getTitle());
             binding.tvTime.setText(event.getTime());
             binding.tvClassroom.setText(event.getClassroomName());
-            binding. tvDescription.setText(event.getDescription());
+            binding.tvDescription.setText(event.getDescription());
             binding.tvEventType.setText(event.getEventType());
 
-            // Set color based on event type
+            // Set color based on event type and cancelled status
             int color;
-            switch (event.getEventType().toLowerCase()) {
-                case "exam":
-                    color = R.color.event_exam;
-                    break;
-                case "lab":
-                    color = R.color.event_lab;
-                    break;
-                case "class":
-                default:
-                    color = R. color.event_class;
+            if (event.isCancelled()) {
+                color = R.color.error;
+                binding.getRoot().setAlpha(0.6f);
+            } else {
+                binding.getRoot().setAlpha(1.0f);
+                switch (event.getEventType().toLowerCase()) {
+                    case "exam":
+                        color = R.color.event_exam;
+                        break;
+                    case "lab":
+                        color = R.color.event_lab;
+                        break;
+                    case "class":
+                    default:
+                        color = R.color.event_class;
+                }
             }
             binding.viewTypeIndicator.setBackgroundResource(color);
             binding.tvEventType.setTextColor(binding.getRoot().getContext().getColor(color));
 
             binding.getRoot().setOnClickListener(v -> {
                 if (listener != null) {
-                    listener. onEventClick(event);
+                    listener.onEventClick(event);
                 }
             });
         }

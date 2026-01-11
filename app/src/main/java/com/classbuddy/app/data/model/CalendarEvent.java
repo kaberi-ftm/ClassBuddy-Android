@@ -11,6 +11,7 @@ public class CalendarEvent {
     private String eventType; // "Class", "Lab", "Exam"
     private String description;
     private Date date;
+    private boolean isCancelled;
 
     public CalendarEvent() {
     }
@@ -20,10 +21,23 @@ public class CalendarEvent {
         this.id = id;
         this.title = title;
         this.classroomName = classroomName;
-        this. time = time;
-        this. eventType = eventType;
+        this.time = time;
+        this.eventType = eventType;
         this.description = description;
         this.date = date;
+        this.isCancelled = false;
+    }
+
+    public CalendarEvent(String id, String title, String classroomName,
+                         String time, String eventType, String description, Date date, boolean isCancelled) {
+        this.id = id;
+        this.title = title;
+        this.classroomName = classroomName;
+        this.time = time;
+        this.eventType = eventType;
+        this.description = description;
+        this.date = date;
+        this.isCancelled = isCancelled;
     }
 
     // Getters and Setters
@@ -81,5 +95,13 @@ public class CalendarEvent {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public boolean isCancelled() {
+        return isCancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        isCancelled = cancelled;
     }
 }
