@@ -102,6 +102,24 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Schedule Type (Recurring/One-time) -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilScheduleType"
+                style="@style/Widget.ClassBuddy.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/schedule_type"
+                app:endIconMode="dropdown_menu">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actvScheduleType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <!-- Day -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDay"
@@ -117,6 +135,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Specific Date (for one-time classes) -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSpecificDate"
+                style="@style/Widget.ClassBuddy.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/specific_date"
+                android:visibility="gone"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_calendar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSpecificDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:clickable="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

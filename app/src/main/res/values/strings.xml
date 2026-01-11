@@ -68,6 +68,8 @@
     <string name="start_time">Start Time</string>
     <string name="end_time">End Time</string>
     <string name="class_type">Class Type</string>
+    <string name="schedule_type">Schedule Type</string>
+    <string name="specific_date">Select Date</string>
     <string name="routine_added">Class added to routine</string>
     <string name="routine_updated">Routine updated</string>
     <string name="routine_deleted">Class removed from routine</string>

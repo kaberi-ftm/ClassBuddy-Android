@@ -25,6 +25,8 @@ public class Routine implements Serializable {
     private boolean isCancelled;
     private String cancellationReason;
     private String cancelledDate; // Date for which class is cancelled (format: yyyy-MM-dd)
+    private String specificDate; // For one-time classes on a specific date (format: yyyy-MM-dd)
+    private boolean isRecurring; // true = weekly recurring, false = one-time on specificDate
 
     @ServerTimestamp
     private Timestamp createdAt;
@@ -101,6 +103,12 @@ public class Routine implements Serializable {
 
     public String getCancelledDate() { return cancelledDate; }
     public void setCancelledDate(String cancelledDate) { this.cancelledDate = cancelledDate; }
+
+    public String getSpecificDate() { return specificDate; }
+    public void setSpecificDate(String specificDate) { this.specificDate = specificDate; }
+
+    public boolean isRecurring() { return isRecurring; }
+    public void setRecurring(boolean recurring) { isRecurring = recurring; }
 
     public String getTimeSlot() {
         return startTime + " - " + endTime;

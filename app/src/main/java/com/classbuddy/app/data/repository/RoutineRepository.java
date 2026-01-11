@@ -38,7 +38,9 @@ public class RoutineRepository {
             int dayIndex,
             String startTime,
             String endTime,
-            String type
+            String type,
+            boolean isRecurring,
+            String specificDate
     ) {
         String adminId = getCurrentUserId();
         MediatorLiveData<Resource<String>> result = new MediatorLiveData<>();
@@ -61,6 +63,10 @@ public class RoutineRepository {
                 type,
                 adminId
         );
+        
+        // Set recurring and specific date fields
+        routine.setRecurring(isRecurring);
+        routine.setSpecificDate(specificDate);
 
         return firestoreSource.createRoutine(routine);
     }
@@ -87,7 +93,9 @@ public class RoutineRepository {
             int dayIndex,
             String startTime,
             String endTime,
-            String type
+            String type,
+            boolean isRecurring,
+            String specificDate
     ) {
         Map<String, Object> updates = new HashMap<>();
         updates.put("subject", subject);
@@ -98,6 +106,8 @@ public class RoutineRepository {
         updates.put("startTime", startTime);
         updates.put("endTime", endTime);
         updates.put("type", type);
+        updates.put("recurring", isRecurring);
+        updates.put("specificDate", specificDate);
 
         return firestoreSource.updateRoutine(routineId, updates);
     }
