@@ -71,6 +71,15 @@ public class AdminRoutineAdapter extends ListAdapter<Routine, AdminRoutineAdapte
             binding.tvTime.setText(DateTimeUtils.formatTime(routine.getStartTime()) +
                     " - " + DateTimeUtils.formatTime(routine.getEndTime()));
 
+            // Show day/date info based on recurring status
+            if (routine.isRecurring() || routine.getSpecificDate() == null || routine.getSpecificDate().isEmpty()) {
+                // Recurring weekly class - show day of week
+                binding.tvDay.setText(routine.getDayOfWeek() + " (Weekly)");
+            } else {
+                // One-time class - show specific date
+                binding.tvDay.setText(routine.getSpecificDate() + " (One-time)");
+            }
+
             // Set type
             binding.chipType.setText(routine.getType().toUpperCase());
             int chipColor;

@@ -48,38 +48,42 @@ public class AddRoutineViewModel extends ViewModel {
 
     public void createRoutine(String subject, String faculty, String room,
                               String dayOfWeek, int dayIndex,
-                              String startTime, String endTime, String type) {
+                              String startTime, String endTime, String type,
+                              boolean isRecurring, String specificDate) {
 
         String name = classroomName.getValue();
         if (name == null) name = "";
 
         LiveData<Resource<String>> source = routineRepository.createRoutine(
                 classroomId, name, subject, faculty, room,
-                dayOfWeek, dayIndex, startTime, endTime, type
+                dayOfWeek, dayIndex, startTime, endTime, type,
+                isRecurring, specificDate
         );
 
         saveResult.addSource(source, resource -> {
             saveResult.setValue(resource);
             if (resource.isSuccess() || resource.isError()) {
-                saveResult. removeSource(source);
+                saveResult.removeSource(source);
             }
         });
     }
 
     public void updateRoutine(String routineId, String subject, String faculty, String room,
                               String dayOfWeek, int dayIndex,
-                              String startTime, String endTime, String type) {
+                              String startTime, String endTime, String type,
+                              boolean isRecurring, String specificDate) {
 
         LiveData<Resource<Void>> source = routineRepository.updateRoutine(
                 routineId, subject, faculty, room,
-                dayOfWeek, dayIndex, startTime, endTime, type
+                dayOfWeek, dayIndex, startTime, endTime, type,
+                isRecurring, specificDate
         );
 
-        saveResult. addSource(source, resource -> {
+        saveResult.addSource(source, resource -> {
             if (resource.isSuccess()) {
                 saveResult.setValue(Resource.success(routineId));
             } else if (resource.isError()) {
-                saveResult.setValue(Resource. error(resource.message, null));
+                saveResult.setValue(Resource.error(resource.message, null));
             }
             if (resource.isSuccess() || resource.isError()) {
                 saveResult.removeSource(source);
