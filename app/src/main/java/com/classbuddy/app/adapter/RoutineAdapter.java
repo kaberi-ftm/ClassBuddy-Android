@@ -63,35 +63,44 @@ public class RoutineAdapter extends ListAdapter<Routine, RoutineAdapter.RoutineV
         }
 
         void bind(Routine routine) {
-            binding.tvSubject. setText(routine.getSubject());
+            binding.tvSubject.setText(routine.getSubject());
             binding.tvFaculty.setText(routine.getFaculty());
             binding.tvRoom.setText("Room " + routine.getRoom());
             binding.tvClassroomName.setText(routine.getClassroomName());
 
             binding.tvStartTime.setText(DateTimeUtils.formatTime(routine.getStartTime()));
-            binding.tvEndTime.setText(DateTimeUtils. formatTime(routine.getEndTime()));
+            binding.tvEndTime.setText(DateTimeUtils.formatTime(routine.getEndTime()));
 
             // Set type
             String typeDisplay = routine.getType().toUpperCase();
             binding.tvType.setText(typeDisplay);
 
-            // Set time container color based on type
-            int color;
-            switch (routine.getType().toLowerCase()) {
-                case Constants.ROUTINE_TYPE_LAB:
-                    color = R.color.event_lab;
-                    break;
-                case Constants.ROUTINE_TYPE_TUTORIAL:
-                    color = R. color.secondary;
-                    break;
-                default:
-                    color = R. color.primary;
+            // Handle cancelled status
+            if (routine.isCancelled()) {
+                binding.getRoot().setAlpha(0.6f);
+                binding.tvSubject.setText(routine.getSubject() + " (CANCELLED)");
+                // Use error color for cancelled
+                binding.timeContainer.setBackgroundResource(R.color.error);
+            } else {
+                binding.getRoot().setAlpha(1.0f);
+                // Set time container color based on type
+                int color;
+                switch (routine.getType().toLowerCase()) {
+                    case Constants.ROUTINE_TYPE_LAB:
+                        color = R.color.event_lab;
+                        break;
+                    case Constants.ROUTINE_TYPE_TUTORIAL:
+                        color = R.color.secondary;
+                        break;
+                    default:
+                        color = R.color.primary;
+                }
+                binding.timeContainer.setBackgroundResource(color);
             }
-            binding.timeContainer.setBackgroundResource(color);
 
             binding.getRoot().setOnClickListener(v -> {
                 if (listener != null) {
-                    listener. onRoutineClick(routine);
+                    listener.onRoutineClick(routine);
                 }
             });
         }

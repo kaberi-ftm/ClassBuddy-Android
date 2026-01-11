@@ -106,6 +106,39 @@ public class RoutineRepository {
         return firestoreSource.deleteRoutine(routineId);
     }
 
+    public LiveData<Resource<Void>> cancelClass(String routineId, String reason, String cancelledDate) {
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("isCancelled", true);
+        updates.put("cancellationReason", reason);
+        updates.put("cancelledDate", cancelledDate);
+        return firestoreSource.updateRoutine(routineId, updates);
+    }
+
+    public LiveData<Resource<Void>> restoreClass(String routineId) {
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("isCancelled", false);
+        updates.put("cancellationReason", null);
+        updates.put("cancelledDate", null);
+        return firestoreSource.updateRoutine(routineId, updates);
+    }
+
+    public void notifyStudentsOfClassCancellation(List<String> studentIds, Routine routine, String reason, String date) {
+        String title = "Class Cancelled";
+        String message = routine.getSubject() + " class on " + date + " has been cancelled.";
+        if (reason != null && !reason.isEmpty()) {
+            message += "\nReason: " + reason;
+        }
+
+        firestoreSource.sendNotificationToStudents(
+                studentIds,
+                title,
+                message,
+                Constants.NOTIFICATION_TYPE_CLASS_CANCELLED,
+                routine.getId(),
+                routine.getClassroomId()
+        );
+    }
+
     public void notifyStudentsOfRoutineUpdate(List<String> studentIds, String classroomName) {
         firestoreSource.sendNotificationToStudents(
                 studentIds,

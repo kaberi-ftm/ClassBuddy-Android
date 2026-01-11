@@ -61,19 +61,31 @@ public class ExamAdapter extends ListAdapter<Exam, ExamAdapter. ExamViewHolder> 
         }
 
         void bind(Exam exam) {
-            binding.tvCourseName.setText(exam. getCourseName());
+            binding.tvCourseName.setText(exam.getCourseName());
             binding.tvCourseNo.setText(exam.getCourseNo());
             binding.tvExamType.setText(exam.getExamTypeDisplay());
             binding.tvDate.setText(DateTimeUtils.formatDate(exam.getExamDate()));
-            binding.tvTime.setText(DateTimeUtils. formatTime(exam.getStartTime()));
-            binding.tvCountdown.setText(DateTimeUtils. getCountdown(exam.getExamDate()));
+            binding.tvTime.setText(DateTimeUtils.formatTime(exam.getStartTime()));
+
+            // Handle cancelled status
+            if (exam.isCancelled()) {
+                binding.tvCountdown.setText("CANCELLED");
+                binding.tvCountdown.setBackgroundTintList(
+                        android.content.res.ColorStateList.valueOf(
+                                binding.getRoot().getContext().getColor(R.color.error)));
+                binding.getRoot().setAlpha(0.7f);
+            } else {
+                binding.tvCountdown.setText(DateTimeUtils.getCountdown(exam.getExamDate()));
+                binding.tvCountdown.setBackgroundTintList(null);
+                binding.getRoot().setAlpha(1.0f);
+            }
 
             // Room
             String room = exam.getRoom();
             if (room != null && !room.isEmpty()) {
                 binding.tvRoom.setText("Room " + room);
             } else {
-                binding.tvRoom. setText("TBA");
+                binding.tvRoom.setText("TBA");
             }
 
             // Set exam type badge color

@@ -73,6 +73,13 @@
     <string name="routine_deleted">Class removed from routine</string>
     <string name="todays_schedule">Today\'s Schedule</string>
     <string name="no_classes_today">No classes scheduled for today</string>
+    <string name="cancel_class">Cancel Class</string>
+    <string name="cancel_class_confirm">Are you sure you want to cancel this class?</string>
+    <string name="class_cancelled">Class cancelled</string>
+    <string name="class_cancelled_status">CANCELLED</string>
+    <string name="restore_class">Restore Class</string>
+    <string name="class_restored">Class restored</string>
+    <string name="select_cancel_date">Select Date to Cancel</string>
 
     <!-- Exams -->
     <string name="exams">Exams</string>
@@ -91,6 +98,13 @@
     <string name="empty_exams_title">No Exams</string>
     <string name="empty_exams_message">No exams scheduled yet</string>
     <string name="reminder_set">Reminder set successfully</string>
+    <string name="cancel_exam">Cancel Exam</string>
+    <string name="cancel_exam_confirm">Are you sure you want to cancel this exam?</string>
+    <string name="exam_cancelled">Exam cancelled</string>
+    <string name="exam_cancelled_status">CANCELLED</string>
+    <string name="cancellation_reason">Reason (optional)</string>
+    <string name="restore_exam">Restore Exam</string>
+    <string name="exam_restored">Exam restored</string>
 
     <!-- Notices -->
     <string name="notices">Notices</string>

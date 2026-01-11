@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import com.classbuddy.app.data.model.Notice;
 import com.classbuddy.app.data.remote.FirebaseAuthSource;
 import com.classbuddy.app.data.remote.FirestoreSource;
+import com.classbuddy.app.util.Constants;
 import com.classbuddy.app.util.Resource;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -92,5 +93,36 @@ public class NoticeRepository {
         String currentUserId = authSource.getCurrentUserId();
         if (currentUserId == null) return;
         firestoreSource.markNoticeAsRead(noticeId, currentUserId);
+    }
+
+    public void notifyStudentsOfNewNotice(List<String> studentIds, Notice notice) {
+        String title = "New Notice: " + notice.getTitle();
+        String message = notice.getContent();
+        if (message.length() > 100) {
+            message = message.substring(0, 97) + "...";
+        }
+
+        firestoreSource.sendNotificationToStudents(
+                studentIds,
+                title,
+                message,
+                Constants.NOTIFICATION_TYPE_NOTICE,
+                notice.getId(),
+                notice.getClassroomId()
+        );
+    }
+
+    public void notifyStudentsOfNoticeUpdate(List<String> studentIds, Notice notice) {
+        String title = "Notice Updated: " + notice.getTitle();
+        String message = "A notice has been updated in " + notice.getClassroomName();
+
+        firestoreSource.sendNotificationToStudents(
+                studentIds,
+                title,
+                message,
+                Constants.NOTIFICATION_TYPE_NOTICE_UPDATE,
+                notice.getId(),
+                notice.getClassroomId()
+        );
     }
 }

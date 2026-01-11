@@ -77,6 +77,16 @@
             android:gravity="end">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                style="@style/Widget.ClassBuddy.Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel_class"
+                android:textColor="@color/warning"
+                app:icon="@drawable/ic_cancel"
+                app:iconTint="@color/warning" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEdit"
                 style="@style/Widget.ClassBuddy.Button.Text"
                 android:layout_width="wrap_content"

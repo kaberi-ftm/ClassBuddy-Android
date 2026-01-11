@@ -42,6 +42,8 @@ public class Exam implements Serializable {
     private int totalMarks;
     private String notes;
     private String adminId;
+    private boolean isCancelled;
+    private String cancellationReason;
 
     @ServerTimestamp
     private Timestamp createdAt;
@@ -115,9 +117,15 @@ public class Exam implements Serializable {
     public Timestamp getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
 
+    public boolean isCancelled() { return isCancelled; }
+    public void setCancelled(boolean cancelled) { isCancelled = cancelled; }
+
+    public String getCancellationReason() { return cancellationReason; }
+    public void setCancellationReason(String cancellationReason) { this.cancellationReason = cancellationReason; }
+
     public boolean isUpcoming() {
         if (examDate == null) return false;
-        return examDate.toDate().after(new Date());
+        return examDate.toDate().after(new Date()) && !isCancelled;
     }
 
     public String getExamTypeDisplay() {

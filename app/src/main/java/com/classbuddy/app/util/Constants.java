@@ -38,6 +38,9 @@ public class Constants {
     public static final String NOTIFICATION_TYPE_REMINDER = "reminder";
     public static final String NOTIFICATION_TYPE_GENERAL = "general";
     public static final String NOTIFICATION_TYPE_ROUTINE = "routine";
+    public static final String NOTIFICATION_TYPE_EXAM_CANCELLED = "exam_cancelled";
+    public static final String NOTIFICATION_TYPE_CLASS_CANCELLED = "class_cancelled";
+    public static final String NOTIFICATION_TYPE_NOTICE_UPDATE = "notice_update";
 
     // Reminder Times (in milliseconds)
     public static final long REMINDER_24_HOURS = 24 * 60 * 60 * 1000L;

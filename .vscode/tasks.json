@@ -1,0 +1,76 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "gradle-assembleDebug",
+			"type": "shell",
+			"command": "gradlew.bat",
+			"args": [
+				"assembleDebug"
+			],
+			"problemMatcher": [
+				"$gradle"
+			]
+		},
+		{
+			"label": "gradle-assembleDebug",
+			"type": "shell",
+			"command": ".\\gradlew.bat",
+			"args": [
+				"assembleDebug"
+			],
+			"problemMatcher": [
+				"$gradle"
+			]
+		},
+		{
+			"label": "gradle-assembleDebug",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"\"e:\\Telegram Desktop\\ClassBuddy2\\gradlew.bat\"",
+				"assembleDebug"
+			],
+			"problemMatcher": [
+				"$gradle"
+			]
+		},
+		{
+			"label": "run-gradlew-assembleDebug",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"\"e:\\Telegram Desktop\\ClassBuddy2\\gradlew.bat\"",
+				"assembleDebug"
+			],
+			"problemMatcher": [
+				"$gradle"
+			]
+		},
+		{
+			"label": "run-gradlew-assembleDebug-quoted",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"\"\"e:\\Telegram Desktop\\ClassBuddy2\\gradlew.bat\" assembleDebug\""
+			],
+			"problemMatcher": [
+				"$gradle"
+			]
+		},
+		{
+			"label": "run-gradlew-assembleDebug-cwd",
+			"type": "shell",
+			"command": ".\\gradlew.bat",
+			"args": [
+				"assembleDebug"
+			],
+			"problemMatcher": [
+				"$gradle"
+			]
+		}
+	]
+}

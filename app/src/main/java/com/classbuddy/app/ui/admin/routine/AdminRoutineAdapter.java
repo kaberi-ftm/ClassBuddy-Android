@@ -21,6 +21,7 @@ public class AdminRoutineAdapter extends ListAdapter<Routine, AdminRoutineAdapte
     public interface OnRoutineActionListener {
         void onEditClick(Routine routine);
         void onDeleteClick(Routine routine);
+        void onCancelClick(Routine routine);
     }
 
     public AdminRoutineAdapter(OnRoutineActionListener listener) {
@@ -67,8 +68,8 @@ public class AdminRoutineAdapter extends ListAdapter<Routine, AdminRoutineAdapte
             binding.tvSubject.setText(routine.getSubject());
             binding.tvFaculty.setText(routine.getFaculty());
             binding.tvRoom.setText("Room: " + routine.getRoom());
-            binding.tvTime. setText(DateTimeUtils.formatTime(routine.getStartTime()) +
-                    " - " + DateTimeUtils.formatTime(routine. getEndTime()));
+            binding.tvTime.setText(DateTimeUtils.formatTime(routine.getStartTime()) +
+                    " - " + DateTimeUtils.formatTime(routine.getEndTime()));
 
             // Set type
             binding.chipType.setText(routine.getType().toUpperCase());
@@ -83,7 +84,17 @@ public class AdminRoutineAdapter extends ListAdapter<Routine, AdminRoutineAdapte
                 default:
                     chipColor = R.color.primary;
             }
-            binding. chipType.setChipBackgroundColorResource(chipColor);
+            binding.chipType.setChipBackgroundColorResource(chipColor);
+
+            // Handle cancelled status
+            if (routine.isCancelled()) {
+                binding.getRoot().setAlpha(0.6f);
+                binding.tvSubject.setText(routine.getSubject() + " (CANCELLED)");
+                binding.btnCancel.setText(R.string.restore_class);
+            } else {
+                binding.getRoot().setAlpha(1.0f);
+                binding.btnCancel.setText(R.string.cancel_class);
+            }
 
             binding.btnEdit.setOnClickListener(v -> {
                 if (listener != null) listener.onEditClick(routine);
@@ -91,6 +102,10 @@ public class AdminRoutineAdapter extends ListAdapter<Routine, AdminRoutineAdapte
 
             binding.btnDelete.setOnClickListener(v -> {
                 if (listener != null) listener.onDeleteClick(routine);
+            });
+
+            binding.btnCancel.setOnClickListener(v -> {
+                if (listener != null) listener.onCancelClick(routine);
             });
         }
     }

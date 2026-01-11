@@ -110,6 +110,31 @@ public class ExamRepository {
         return firestoreSource.deleteExam(examId);
     }
 
+    public LiveData<Resource<Void>> cancelExam(String examId, String reason) {
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("isCancelled", true);
+        updates.put("cancellationReason", reason);
+        return firestoreSource.updateExam(examId, updates);
+    }
+
+    public void notifyStudentsOfExamCancellation(List<String> studentIds, Exam exam, String reason) {
+        String title = exam.getExamTypeDisplay() + " Cancelled";
+        String message = exam.getCourseName() + " exam scheduled for " +
+                DateTimeUtils.formatDate(exam.getExamDate()) + " has been cancelled.";
+        if (reason != null && !reason.isEmpty()) {
+            message += "\nReason: " + reason;
+        }
+
+        firestoreSource.sendNotificationToStudents(
+                studentIds,
+                title,
+                message,
+                Constants.NOTIFICATION_TYPE_EXAM_CANCELLED,
+                exam.getId(),
+                exam.getClassroomId()
+        );
+    }
+
     public void notifyStudentsOfNewExam(List<String> studentIds, Exam exam) {
         String title = "New " + exam.getExamTypeDisplay() + " Scheduled";
         String message = exam.getCourseName() + " on " +

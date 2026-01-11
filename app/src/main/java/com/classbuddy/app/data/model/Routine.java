@@ -22,6 +22,9 @@ public class Routine implements Serializable {
     private String endTime; // "10:00"
     private String type; // "lecture", "lab", "tutorial"
     private String adminId;
+    private boolean isCancelled;
+    private String cancellationReason;
+    private String cancelledDate; // Date for which class is cancelled (format: yyyy-MM-dd)
 
     @ServerTimestamp
     private Timestamp createdAt;
@@ -89,6 +92,15 @@ public class Routine implements Serializable {
 
     public Timestamp getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
+
+    public boolean isCancelled() { return isCancelled; }
+    public void setCancelled(boolean cancelled) { isCancelled = cancelled; }
+
+    public String getCancellationReason() { return cancellationReason; }
+    public void setCancellationReason(String cancellationReason) { this.cancellationReason = cancellationReason; }
+
+    public String getCancelledDate() { return cancelledDate; }
+    public void setCancelledDate(String cancelledDate) { this.cancelledDate = cancelledDate; }
 
     public String getTimeSlot() {
         return startTime + " - " + endTime;

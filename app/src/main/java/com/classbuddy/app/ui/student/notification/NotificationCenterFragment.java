@@ -117,11 +117,18 @@ public class NotificationCenterFragment extends Fragment {
 
         switch (type) {
             case com.classbuddy.app.util.Constants.NOTIFICATION_TYPE_EXAM:
+            case com.classbuddy.app.util.Constants.NOTIFICATION_TYPE_EXAM_CANCELLED:
                 // Navigate to exam detail
                 showNotificationDetail(notification);
                 break;
-            case com.classbuddy.app.util.Constants. NOTIFICATION_TYPE_NOTICE:
+            case com.classbuddy.app.util.Constants.NOTIFICATION_TYPE_NOTICE:
+            case com.classbuddy.app.util.Constants.NOTIFICATION_TYPE_NOTICE_UPDATE:
                 // Navigate to notice
+                showNotificationDetail(notification);
+                break;
+            case com.classbuddy.app.util.Constants.NOTIFICATION_TYPE_ROUTINE:
+            case com.classbuddy.app.util.Constants.NOTIFICATION_TYPE_CLASS_CANCELLED:
+                // Navigate to routine
                 showNotificationDetail(notification);
                 break;
             case com.classbuddy.app.util.Constants.NOTIFICATION_TYPE_CLASSROOM:

@@ -80,15 +80,28 @@ public class NotificationAdapter extends ListAdapter<Notification, NotificationA
             switch (type) {
                 case Constants.NOTIFICATION_TYPE_EXAM:
                     iconRes = R.drawable.ic_exam;
-                    iconTint = R. color.exam_ct;
+                    iconTint = R.color.exam_ct;
                     break;
-                case Constants. NOTIFICATION_TYPE_NOTICE:
+                case Constants.NOTIFICATION_TYPE_EXAM_CANCELLED:
+                    iconRes = R.drawable.ic_cancel;
+                    iconTint = R.color.error;
+                    break;
+                case Constants.NOTIFICATION_TYPE_NOTICE:
+                case Constants.NOTIFICATION_TYPE_NOTICE_UPDATE:
                     iconRes = R.drawable.ic_notice;
-                    iconTint = R. color.secondary;
+                    iconTint = R.color.secondary;
+                    break;
+                case Constants.NOTIFICATION_TYPE_ROUTINE:
+                    iconRes = R.drawable.ic_calendar;
+                    iconTint = R.color.primary;
+                    break;
+                case Constants.NOTIFICATION_TYPE_CLASS_CANCELLED:
+                    iconRes = R.drawable.ic_cancel;
+                    iconTint = R.color.error;
                     break;
                 case Constants.NOTIFICATION_TYPE_CLASSROOM:
                     iconRes = R.drawable.ic_classroom;
-                    iconTint = R. color.primary;
+                    iconTint = R.color.primary;
                     break;
                 case Constants.NOTIFICATION_TYPE_REMINDER:
                     iconRes = R.drawable.ic_notification;
